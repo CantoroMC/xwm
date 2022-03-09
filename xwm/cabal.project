@@ -1,0 +1,2 @@
+packages: ./ ../xmonad/ ../xmonad-contrib/ ../xmobar/
+flags: +with_xft +with_utf8 +with_mpd +with_datezone +with_xpm +with_weather

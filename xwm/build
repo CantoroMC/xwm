@@ -1,0 +1,4 @@
+#! /bin/sh -eu
+
+# This script is empty on purpose since it is executed by xmonad at startup,
+# I personally prefer to manually recompile it but don't waste time at startup.
