@@ -1,22 +1,27 @@
 import XMonad
+import           XMonad.Hooks.EwmhDesktops     ( ewmh )
+import           XMonad.Hooks.ManageDocks      ( docks )
+import           XMonad.Hooks.StatusBar        ( withSB )
 
+import qualified Theme.Palette                 as XwmTheme
 import           XMonad.User.Bindings.Binder   ( mapBindings, storeBindings )
 import           XMonad.User.Bindings.Keys     ( xwmKeys )
 import           XMonad.User.Bindings.Mouse    ( xwmMouseBindings )
 import           XMonad.User.Layout.Workspaces ( xwmWorkspaces )
+import           XMonad.User.Log.StatusBar     ( xBarConfig )
 
-
+main :: IO ()
 main = do
     let (applicableKeys, explainableBindings) = mapBindings $ xwmKeys . modMask
         xwmConfig = def {
             terminal             = "kitty"
             , focusFollowsMouse  = False
             , clickJustFocuses   = True
-            , borderWidth        = 1
+            , borderWidth        = XwmTheme.borderWidth XwmTheme.palette
             , modMask            = mod4Mask
             , workspaces         = xwmWorkspaces
-            , normalBorderColor  = "#000000"
-            , focusedBorderColor = "#79ff0f"
+            , normalBorderColor  = XwmTheme.background0 XwmTheme.palette
+            , focusedBorderColor = XwmTheme.green       XwmTheme.palette
             , keys               = applicableKeys
             , mouseBindings      = xwmMouseBindings
             , manageHook         = myManageHook
@@ -26,7 +31,10 @@ main = do
             , layoutHook         = myLayout
         }
         xwm =
-            storeBindings explainableBindings xwmConfig
+            storeBindings explainableBindings
+            . docks
+            . ewmh
+            . withSB xBarConfig $ xwmConfig
     xmonad xwm
 
 myLayout = tiled ||| Mirror tiled ||| Full
