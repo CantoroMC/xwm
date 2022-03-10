@@ -38,18 +38,24 @@ library
                     , XMonad.User.Bindings.Keys
                     , XMonad.User.Bindings.Mouse
                     , XMonad.User.Bindings.Util
+                    , XMonad.User.Layout.Decorations
                     , XMonad.User.Layout.Hook
                     , XMonad.User.Layout.Layouts
+                    , XMonad.User.Layout.MultiToggle.TabBarDecoration
                     , XMonad.User.Layout.Workspaces
                     , XMonad.User.Log.ClickableWorkspaces
                     , XMonad.User.Log.StatusBar
                     , XMonad.User.Manage.Hook
                     , XMonad.User.Manage.Util
+                    , XMonad.User.Prompt.Config
+                    , XMonad.User.Prompt.MPD
                     , XMonad.User.Startup.Hook
                     , Xmobar.User.Monitors
                     , Xmobar.User.Util
   build-depends:      base >= 4.7 && < 4.16
+                    , bytestring
                     , containers
+                    , libmpd
                     , mtl
                     , regex-compat
                     , X11
