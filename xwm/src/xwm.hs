@@ -1,14 +1,38 @@
 import XMonad
+    ( XConfig
+        ( terminal
+        , focusFollowsMouse
+        , clickJustFocuses
+        , borderWidth
+        , modMask
+        , workspaces
+        , normalBorderColor
+        , focusedBorderColor
+        , keys
+        , mouseBindings
+        , manageHook
+        , startupHook
+        , layoutHook
+        )
+    , mod4Mask
+    , xmonad
+    , Default(def) 
+    )
 import           XMonad.Hooks.EwmhDesktops     ( ewmh )
 import           XMonad.Hooks.ManageDocks      ( docks )
+import           XMonad.Hooks.Rescreen         ( rescreenHook )
 import           XMonad.Hooks.StatusBar        ( withSB )
 
 import qualified Theme.Palette                 as XwmTheme
 import           XMonad.User.Bindings.Binder   ( mapBindings, storeBindings )
 import           XMonad.User.Bindings.Keys     ( xwmKeys )
 import           XMonad.User.Bindings.Mouse    ( xwmMouseBindings )
+import           XMonad.User.Layout.Hook       ( xwmLayoutHook )
 import           XMonad.User.Layout.Workspaces ( xwmWorkspaces )
 import           XMonad.User.Log.StatusBar     ( xBarConfig )
+import           XMonad.User.Manage.Hook       ( xwmManageHook )
+import           XMonad.User.Manage.Util       ( applyUrgencyHook, xwmRescreenCfg )
+import           XMonad.User.Startup.Hook      ( xwmStartupHook )
 
 main :: IO ()
 main = do
@@ -24,76 +48,17 @@ main = do
             , focusedBorderColor = XwmTheme.green       XwmTheme.palette
             , keys               = applicableKeys
             , mouseBindings      = xwmMouseBindings
-            , manageHook         = myManageHook
-            , handleEventHook    = myEventHook
-            , logHook            = myLogHook
-            , startupHook        = myStartupHook
-            , layoutHook         = myLayout
+            , manageHook         = xwmManageHook
+            -- , handleEventHook    = xwmEventHook
+            -- , logHook            = xwmLogHook xwmProc
+            , startupHook        = xwmStartupHook
+            , layoutHook         = xwmLayoutHook
         }
         xwm =
             storeBindings explainableBindings
             . docks
             . ewmh
+            . applyUrgencyHook
+            . rescreenHook xwmRescreenCfg
             . withSB xBarConfig $ xwmConfig
     xmonad xwm
-
-myLayout = tiled ||| Mirror tiled ||| Full
-  where
-    tiled   = Tall nmaster delta ratio
-    nmaster = 1
-    ratio   = 1/2
-    delta   = 3/100
-
-
-------------------------------------------------------------------------
--- Window rules:
-
--- Execute arbitrary actions and WindowSet manipulations when managing
--- a new window. You can use this to, for example, always float a
--- particular program, or have a client always appear on a particular
--- workspace.
---
--- To find the property name associated with a program, use
--- > xprop | grep WM_CLASS
--- and click on the client you're interested in.
---
--- To match on the WM_NAME, you can use 'title' in the same way that
--- 'className' and 'resource' are used below.
---
-myManageHook = composeAll
-    [ className =? "MPlayer"        --> doFloat
-    , className =? "Gimp"           --> doFloat
-    , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore ]
-
-
-------------------------------------------------------------------------
--- Event handling
-
--- * EwmhDesktops users should change this to ewmhDesktopsEventHook
---
--- Defines a custom handler function for X Events. The function should
--- return (All True) if the default handler is to be run afterwards. To
--- combine event hooks use mappend or mconcat from Data.Monoid.
---
-myEventHook = mempty
-
-
-------------------------------------------------------------------------
--- Status bars and logging
-
--- Perform an arbitrary action on each internal state change or X event.
--- See the 'XMonad.Hooks.DynamicLog' extension for examples.
---
-myLogHook = return ()
-
-
-------------------------------------------------------------------------
--- Startup hook
-
--- Perform an arbitrary action each time xmonad starts or is restarted
--- with mod-q.  Used by, e.g., XMonad.Layout.PerWorkspace to initialize
--- per-workspace layout choices.
---
--- By default, do nothing.
-myStartupHook = return ()

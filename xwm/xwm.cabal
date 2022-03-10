@@ -15,6 +15,20 @@ description:        Custom build of XMonad and XMobar using cabal
 category:           System
 tested-with:        GHC == 8.10.4, GHC == 8.10.5, GHC == 8.10.7
 extra-source-files: build
+                  , scripts/padding-icon
+                  , scripts/xmPacman
+                  , scripts/xmVolume
+                  , icons/battery/idle/*.xpm
+                  , icons/battery/off/*.xpm
+                  , icons/battery/on/*.xpm
+                  , icons/brightness/*.xpm
+                  , icons/cpu/*.xpm
+                  , icons/network/rx/*.xpm
+                  , icons/network/tx/*.xpm
+                  , icons/ram/*.xpm
+                  , icons/temperature/*.xpm
+                  , icons/volume/*.xpm
+                  , icons/weather/*.xpm
 
 library
   hs-source-dirs:   src/lib
@@ -24,14 +38,20 @@ library
                     , XMonad.User.Bindings.Keys
                     , XMonad.User.Bindings.Mouse
                     , XMonad.User.Bindings.Util
+                    , XMonad.User.Layout.Hook
+                    , XMonad.User.Layout.Layouts
                     , XMonad.User.Layout.Workspaces
                     , XMonad.User.Log.ClickableWorkspaces
                     , XMonad.User.Log.StatusBar
+                    , XMonad.User.Manage.Hook
+                    , XMonad.User.Manage.Util
+                    , XMonad.User.Startup.Hook
                     , Xmobar.User.Monitors
                     , Xmobar.User.Util
   build-depends:      base >= 4.7 && < 4.16
                     , containers
                     , mtl
+                    , regex-compat
                     , X11
                     , xmobar
                     , xmonad
