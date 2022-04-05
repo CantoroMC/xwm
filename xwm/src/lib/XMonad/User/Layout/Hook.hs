@@ -3,9 +3,9 @@
 module XMonad.User.Layout.Hook ( xwmLayoutHook ) where
 
 import XMonad                              ( (|||), Full(Full), Mirror(Mirror) )
+import XMonad.Hooks.ManageDocks            ( avoidStrutsOn )
 import XMonad.Layout.MultiToggle           ( mkToggle, single )
 import XMonad.Layout.MultiToggle.Instances ( StdTransformers(MIRROR, NBFULL) )
-import XMonad.Hooks.ManageDocks            ( avoidStrutsOn )
 import XMonad.Layout.PerWorkspace          ( onWorkspace )
 import XMonad.Util.Types                   ( Direction2D(U) )
 
@@ -14,6 +14,7 @@ import XMonad.User.Layout.Layouts
     , xwmThreeCol
     , xwmTwoPane
     , xwmFloat
+    , xwmOneBig
     , applySpacing
     )
 import XMonad.User.Layout.MultiToggle.TabBarDecoration ( XwmTabBar(XWMTABBAR) )
@@ -25,16 +26,19 @@ xwmBaseWSLayouts =
     xwmTall
     ||| xwmThreeCol
     ||| xwmTwoPane
+    ||| xwmOneBig
     ||| xwmFloat
 
 xwmFloatWSLayouts =
     xwmFloat
     ||| xwmTall
+    ||| xwmOneBig
 
 xwmWideWSLayouts =
     xwmThreeCol
     ||| xwmTall
     ||| xwmTwoPane
+    ||| xwmOneBig
     ||| xwmFloat
 
 xwmLayouts =

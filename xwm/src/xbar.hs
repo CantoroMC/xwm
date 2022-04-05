@@ -31,8 +31,6 @@ import           Xmobar.User.Monitors
     , xBarMenu
     )
 
-
-
 xbarConfig :: Config
 xbarConfig = defaultConfig
     { font             =  "xft:Operator Mono Lig Nerd Font:style=Italic:size=8"
