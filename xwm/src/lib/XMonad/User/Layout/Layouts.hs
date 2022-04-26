@@ -43,7 +43,7 @@ xwmThreeCol =
   where
     nmaster = 1
     delta   = 3 / 100
-    ratio   = 1 / 2
+    ratio   = 1 / 3
 
 xwmTwoPane :: ModifiedLayout SmartBorder (ModifiedLayout Rename TwoPanePersistent) Window
 xwmTwoPane =

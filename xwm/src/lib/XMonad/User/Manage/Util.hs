@@ -38,7 +38,6 @@ import           XMonad.Util.NamedScratchpad ( NamedScratchpad(NS), NamedScratch
 import qualified Theme.Palette               as XwmTheme
 
 
-
 xwmBigRect :: XMSS.RationalRect
 xwmBigRect = XMSS.RationalRect 0.166 0.166 0.666 0.666
 
