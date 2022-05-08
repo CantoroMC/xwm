@@ -11,7 +11,6 @@ module XMonad.User.Manage.Util
     , xwmSideLeft
     , xwmSPDs
     , applyUrgencyHook
-    , xwmRescreenCfg
     ) where
 
 import           XMonad
@@ -25,7 +24,6 @@ import           XMonad
     )
 import qualified XMonad.StackSet             as XMSS
 import           XMonad.Hooks.ManageHelpers  ( doRectFloat )
-import           XMonad.Hooks.Rescreen       ( RescreenConfig(afterRescreenHook, randrChangeHook) )
 import           XMonad.Hooks.UrgencyHook
     ( BorderUrgencyHook (..)
     , UrgencyConfig (..)
@@ -88,9 +86,3 @@ applyUrgencyHook = withUrgencyHookC xwmUrgencyHook xwmUrgencyConfig
         { suppressWhen = Focused
         , remindWhen = Repeatedly 3 30
         }
-
-xwmRescreenCfg :: RescreenConfig
-xwmRescreenCfg = def
-    { afterRescreenHook = spawn "xwm-rescreen"
-    , randrChangeHook   = mempty
-    }

@@ -16,11 +16,10 @@ import XMonad
         )
     , mod4Mask
     , xmonad
-    , Default(def) 
+    , Default(def)
     )
 import           XMonad.Hooks.EwmhDesktops     ( ewmh )
 import           XMonad.Hooks.ManageDocks      ( docks )
-import           XMonad.Hooks.Rescreen         ( rescreenHook )
 import           XMonad.Hooks.StatusBar        ( withSB )
 
 import qualified Theme.Palette                 as XwmTheme
@@ -31,7 +30,7 @@ import           XMonad.User.Layout.Hook       ( xwmLayoutHook )
 import           XMonad.User.Layout.Workspaces ( xwmWorkspaces )
 import           XMonad.User.Log.StatusBar     ( xBarConfig )
 import           XMonad.User.Manage.Hook       ( xwmManageHook )
-import           XMonad.User.Manage.Util       ( applyUrgencyHook, xwmRescreenCfg )
+import           XMonad.User.Manage.Util       ( applyUrgencyHook )
 import           XMonad.User.Startup.Hook      ( xwmStartupHook )
 
 main :: IO ()
@@ -59,6 +58,5 @@ main = do
             . docks
             . ewmh
             . applyUrgencyHook
-            . rescreenHook xwmRescreenCfg
             . withSB xBarConfig $ xwmConfig
     xmonad xwm

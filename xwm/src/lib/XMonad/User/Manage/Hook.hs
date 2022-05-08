@@ -45,7 +45,7 @@ manageOthers = composeAll
     , className =? "MATLAB R2021a - academic use" --> doShift (xwmWorkspaces !! 1)
     , className =? "mpv"                          --> doShift (xwmWorkspaces !! 4)
     -- doIgnore
-    , resource  =? "stalonetray" --> doIgnore
+    , resource  =? "trayer" --> doIgnore
     , className =? "Conky" --> doIgnore
     ]
     -- where doShiftAndGo = doF . liftM2 (.) XMSS.greedyView XMSS.shift

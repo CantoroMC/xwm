@@ -27,14 +27,15 @@ EOF
 }
 
 # Width of the trayer window
-width=$(xprop -name stalonetray | grep 'program specified minimum size' | cut -d ' ' -f 5)
+# width=$(xprop -name trayer | grep 'program specified minimum size' | cut -d ' ' -f 5)
+width="85"
 
 # Icon file name
 iconfile="trayer-padding-${width}px.xpm"
 
 # If the desired icon does not exist create it
 if [ ! -f $iconfile ]; then
-  create_xpm_icon $width "$XMONAD_CONFIG_DIR/extra/icons/$iconfile"
+  create_xpm_icon $width "$XMONAD_CONFIG_DIR/icons/$iconfile"
 fi
 
 # Output the icon tag for xmobar

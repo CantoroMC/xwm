@@ -98,7 +98,7 @@ brightness = Brightness
             "<ipat> <percent>"
         , "--suffix", "True"
         ]
-        [ "-D", "intel_backlight"
+        [ "-D", "amdgpu_bl0"
         , "--brightness-icon-pattern", icon "brightness/brightness_%%.xpm"
         ]
     ) 10
@@ -158,7 +158,7 @@ multicpu = MultiCpu
     ( withHighArgs
         [ "--template",
             "<ipat> "
-            ++ fn 2 "<total0><total1><total2><total3><total4><total5><total6><total7>"
+            ++ fn 2 "<total>"
         , "--suffix",   "True"
         , "--ppad",     "3"
         , "--ddigits",  "0"
