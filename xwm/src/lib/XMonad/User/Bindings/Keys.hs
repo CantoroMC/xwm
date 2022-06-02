@@ -194,7 +194,7 @@ xwmKeys mask = do
         ^> spawn "google-chrome-stable"
     bind $ mask .|. shiftMask ... xK_f
         |/- "Spawn secondary web browser"
-        ^> spawn "surf-open"
+        ^> spawn "vieb"
     bind $ mask ... xK_g
         |/- "Mirror the current layout"
         ^> sendMessage $ MT.Toggle MTI.MIRROR
