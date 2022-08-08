@@ -98,7 +98,7 @@ brightness = Brightness
             "<ipat> <percent>"
         , "--suffix", "True"
         ]
-        [ "-D", "amdgpu_bl0"
+        [ "-D", "intel_backlight"
         , "--brightness-icon-pattern", icon "brightness/brightness_%%.xpm"
         ]
     ) 10
