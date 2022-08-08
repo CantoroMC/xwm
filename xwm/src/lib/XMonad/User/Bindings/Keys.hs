@@ -157,11 +157,11 @@ xwmKeys mask = do
         |/- "Float and center the focused window with quite small dimension"
         ^> withFocused $ windows . flip XMSS.float xwmSmallRect
     bind $ mask ... xK_a
-        |/- "Spawn the secondary terminal"
-        ^> spawn "st"
-    bind $ mask .|. shiftMask ... xK_a
         |/- "Spawn the default terminal"
         ^> spawn =<< terminalFromConf
+    bind $ mask .|. shiftMask ... xK_a
+        |/- "Spawn the secondary terminal"
+        ^> spawn "st"
     bind $ mask .|. controlMask ... xK_a
         |/- "Spawn a tabbed secondary terminal"
         ^> spawn "tabbed -c -r 2 st -w ''"
@@ -338,11 +338,11 @@ xwmKeys mask = do
         |/- "Screenlocker"
         ^> spawn "loginctl lock-session"
     bind $ mask ... xK_Return
-        |/- "Spawn the secondary terminal"
-        ^> spawn "st"
-    bind $ mask .|. shiftMask ... xK_Return
         |/- "Spawn the default terminal"
         ^> spawn =<< terminalFromConf
+    bind $ mask .|. shiftMask ... xK_Return
+        |/- "Spawn the secondary terminal"
+        ^> spawn "st"
     bind $ mask .|. controlMask ... xK_Return
         |/- "Spawn a tabbed secondary terminal"
         ^> spawn "tabbed -c -r 2 st -w ''"
