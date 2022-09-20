@@ -228,6 +228,9 @@ xwmKeys mask = do
         |/- "Spawn xmenu launcher"
         ^> spawn "xmenu-apps"
     bind $ mask ... xK_i
+        |/- "Spawn vscode"
+        ^> spawn "code"
+    bind $ mask .|. shiftMask ... xK_i
         |/- "Submap for dunst"
         ^> XMSM.submap . Map.fromList $
             [ ((noModMask, xK_p),     spawn "dunstctl history-pop")
