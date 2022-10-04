@@ -33,12 +33,12 @@ import           Xmobar.User.Monitors
 
 xbarConfig :: Config
 xbarConfig = defaultConfig
-    { font             =  "xft:Operator Mono Lig Nerd Font:style=Italic:size=8"
+    { font             =  "Operator Mono Lig Nerd Font Italic 8"
     , additionalFonts  =
-        [ "xft:FiraCode Nerd Font:size=7:hinting=true" -- for the win titles
-        , "xft:Operator Mono Lig Nerd Font:style:Italic:size=7:antialias=true:hinting=true"
-        , "xft:FiraCode Nerd Font:style=Regular:size=8" -- for the workspaces
-        , "xft:FiraCode Nerd Font:style=Regular:size=12"
+        [ "FiraCode Nerd Font 7" -- for the win titles
+        , "Operator Mono Lig Nerd Font 7"
+        , "FiraCode Nerd Font 8" -- for the workspaces
+        , "FiraCode Nerd Font 12"
         ]
     , bgColor          = XbarTheme.background0 XbarTheme.palette
     , fgColor          = XbarTheme.foreground0 XbarTheme.palette
