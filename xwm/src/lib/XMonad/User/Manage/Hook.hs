@@ -55,15 +55,19 @@ manageFloatings =
     composeAll $
         [className =? appToFloat --> doCenterFloat | appToFloat <- appsToFloat]
         ++
-        [ title =? "Event Tester"  --> doFloat
-        , (className =? "MATLAB R2021a - academic use" <&&> title *!?  "^MATLAB") --> doFloat
-        , title =? "lstopo"             --> doCenterFloat
-        , title =? "Picture in picture" --> doCenterFloat
-        , role  =? "pop-up"             --> doCenterFloat
-        , title =? "weatherreport"      --> doRectFloat xwmBigRect
-        , title =? "keysheet"           --> doRectFloat xwmSideLeft
-        , title =? "volume"             --> doRectFloat xwmMedRect
-        , (className =? "Display" <&&> title =? "ImageMagick: ") --> doCenterFloat
+        [ title =? "Event Tester"          --> doFloat
+        , title =? "Picture in picture"    --> doCenterFloat
+        , title =? "keysheet"              --> doRectFloat xwmSideLeft
+        , title =? "lstopo"                --> doCenterFloat
+        , title =? "volume"                --> doRectFloat xwmMedRect
+        , title =? "weatherreport"         --> doRectFloat xwmBigRect
+        , role  =? "pop-up"                --> doCenterFloat
+        , (className =? "kitty"
+            <&&> title =? "preview-tui")   --> doFloat
+        , (className =? "MATLAB R2021a - academic use"
+            <&&> title *!?  "^MATLAB")     --> doFloat
+        , (className =? "Display"
+            <&&> title =? "ImageMagick: ") --> doCenterFloat
         ]  where
             appsToFloat =
                 [ "Arandr"
