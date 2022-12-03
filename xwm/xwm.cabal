@@ -52,7 +52,7 @@ library
                     , XMonad.User.Startup.Hook
                     , Xmobar.User.Monitors
                     , Xmobar.User.Util
-  build-depends:      base >= 4.7 && < 4.16
+  build-depends:      base
                     , bytestring
                     , containers
                     , libmpd

@@ -61,7 +61,7 @@ xBarPP = def
         . fn 3
     , ppVisible =
         fc (XwmTheme.foreground0 XwmTheme.palette) ""
-        . border "Top" (XwmTheme.foreground0 XwmTheme.palette) 1
+        . border "Bottom" (XwmTheme.foreground0 XwmTheme.palette) 1
         . pad
         . fn 3
     , ppHidden =
