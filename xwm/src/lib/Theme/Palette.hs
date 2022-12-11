@@ -50,5 +50,5 @@ palette = Colors
     , bMagenta    = xprop "*.color13"
     , bCyan       = xprop "*.color14"
     , bWhite      = xprop "*.color15"
-    , borderWidth = 1
+    , borderWidth = 3
     }

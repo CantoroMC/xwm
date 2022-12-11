@@ -3,6 +3,7 @@ module XMonad.User.Layout.Layouts
     xwmTall
     , xwmThreeCol
     , xwmTwoPane
+    , xwmGrid
     , xwmFloat
     , xwmOneBig
     -- , xwmDecorationTheme
@@ -11,25 +12,24 @@ module XMonad.User.Layout.Layouts
 
 import XMonad
 -- Layout Modifiers
-import           XMonad.Layout.IfMax                 ( IfMax(IfMax) )
 import           XMonad.Layout.LayoutModifier        ( ModifiedLayout )
 import           XMonad.Layout.NoBorders             ( SmartBorder, smartBorders, WithBorder, noBorders )
 import           XMonad.Layout.Renamed               ( Rename(Replace, CutWordsLeft), renamed )
 import           XMonad.Layout.Spacing               ( Border(..), Spacing(..), spacingRaw )
 import           XMonad.Layout.WindowArranger        ( WindowArranger )
 -- Layouts
+import           XMonad.Layout.Grid                  ( Grid(..) )
 import           XMonad.Layout.OneBig
 import           XMonad.Layout.ResizableThreeColumns ( ResizableThreeCol(ResizableThreeColMid) )
 import           XMonad.Layout.ResizableTile         ( ResizableTall(ResizableTall) )
 import           XMonad.Layout.SimplestFloat         ( SimplestFloat, simplestFloat )
 import           XMonad.Layout.TwoPanePersistent     ( TwoPanePersistent(..) )
 
-xwmTall :: ModifiedLayout SmartBorder (ModifiedLayout Rename (IfMax (IfMax ResizableTall ResizableTall) ResizableTall)) Window
+xwmTall :: ModifiedLayout SmartBorder (ModifiedLayout Rename ResizableTall) Window
 xwmTall =
     smartBorders
     . renamed [Replace "Tall"]
-    $ IfMax 5 (IfMax 3 (ResizableTall nmaster delta ratio []) (ResizableTall (nmaster + 1) delta ratio []))
-    (ResizableTall (nmaster + 2) delta ratio [])
+    $ ResizableTall nmaster delta ratio []
   where
     nmaster = 1
     delta   = 3 / 100
@@ -44,6 +44,9 @@ xwmThreeCol =
     nmaster = 1
     delta   = 3 / 100
     ratio   = 1 / 3
+
+xwmGrid :: ModifiedLayout SmartBorder (ModifiedLayout Rename Grid) Window
+xwmGrid = smartBorders $ renamed [Replace "Grid"] Grid
 
 xwmTwoPane :: ModifiedLayout SmartBorder (ModifiedLayout Rename TwoPanePersistent) Window
 xwmTwoPane =

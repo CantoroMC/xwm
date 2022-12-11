@@ -43,7 +43,6 @@ manageOthers = composeAll
     [ -- doShift
       className =? "Transmission-gtk"             --> doShift (xwmWorkspaces !! 8)
     , className =? "MATLAB R2021a - academic use" --> doShift (xwmWorkspaces !! 1)
-    , className =? "mpv"                          --> doShift (xwmWorkspaces !! 4)
     -- doIgnore
     , resource  =? "trayer" --> doIgnore
     , className =? "Conky" --> doIgnore
