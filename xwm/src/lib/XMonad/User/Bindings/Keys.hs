@@ -226,7 +226,7 @@ xwmKeys mask = do
         ^> spawn "rofi -modi drun,run,combi -show combi"
     bind $ mask .|. controlMask ... xK_u
         |/- "Spawn xmenu launcher"
-        ^> spawn "xmenu-apps"
+        ^> spawn "xdg-xmenu"
     bind $ mask ... xK_i
         |/- "Spawn vscode"
         ^> spawn "code"
