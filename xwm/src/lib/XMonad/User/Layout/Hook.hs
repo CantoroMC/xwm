@@ -10,11 +10,10 @@ import XMonad.Util.Types                   ( Direction2D(U) )
 
 import XMonad.User.Layout.Layouts
     ( xwmTall
+    , xwmReshaper
     , xwmThreeCol
-    , xwmGrid
     , xwmTwoPane
     , xwmFloat
-    , xwmOneBig
     , applySpacing
     )
 import XMonad.User.Layout.MultiToggle.TabBarDecoration ( XwmTabBar(XWMTABBAR) )
@@ -26,8 +25,7 @@ xwmLayoutHook =
     . mkToggle (single MIRROR)
     . mkToggle (single XWMTABBAR)
     $ xwmTall
-        ||| xwmGrid
+        ||| xwmReshaper
         ||| xwmThreeCol
         ||| xwmTwoPane
-        ||| xwmOneBig
         ||| xwmFloat

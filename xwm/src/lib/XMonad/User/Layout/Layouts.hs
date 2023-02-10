@@ -1,25 +1,23 @@
 module XMonad.User.Layout.Layouts
     (
     xwmTall
+    , xwmReshaper
     , xwmThreeCol
     , xwmTwoPane
-    , xwmGrid
     , xwmFloat
-    , xwmOneBig
     -- , xwmDecorationTheme
     , applySpacing
     ) where
 
 import XMonad
 -- Layout Modifiers
+import           XMonad.Layout.IfMax
 import           XMonad.Layout.LayoutModifier        ( ModifiedLayout )
 import           XMonad.Layout.NoBorders             ( SmartBorder, smartBorders, WithBorder, noBorders )
 import           XMonad.Layout.Renamed               ( Rename(Replace, CutWordsLeft), renamed )
 import           XMonad.Layout.Spacing               ( Border(..), Spacing(..), spacingRaw )
 import           XMonad.Layout.WindowArranger        ( WindowArranger )
 -- Layouts
-import           XMonad.Layout.Grid                  ( Grid(..) )
-import           XMonad.Layout.OneBig
 import           XMonad.Layout.ResizableThreeColumns ( ResizableThreeCol(ResizableThreeColMid) )
 import           XMonad.Layout.ResizableTile         ( ResizableTall(ResizableTall) )
 import           XMonad.Layout.SimplestFloat         ( SimplestFloat, simplestFloat )
@@ -35,6 +33,21 @@ xwmTall =
     delta   = 3 / 100
     ratio   = 1 / 2
 
+xwmReshaper :: ModifiedLayout SmartBorder (ModifiedLayout Rename
+     (IfMax ResizableTall (IfMax ResizableTall ResizableThreeCol))) Window
+xwmReshaper =
+  smartBorders
+    . renamed [Replace "Reshaper"]
+    $ IfMax 3
+        (ResizableTall (nmaster - 1) delta ratio [])
+        (IfMax 5
+            (ResizableTall nmaster delta ratio [])
+            (ResizableThreeColMid nmaster delta (1/3) []))
+  where
+    nmaster = 2
+    delta = 3 / 100
+    ratio = 1 / 2
+
 xwmThreeCol :: ModifiedLayout SmartBorder (ModifiedLayout Rename ResizableThreeCol) Window
 xwmThreeCol =
     smartBorders
@@ -44,9 +57,6 @@ xwmThreeCol =
     nmaster = 1
     delta   = 3 / 100
     ratio   = 1 / 3
-
-xwmGrid :: ModifiedLayout SmartBorder (ModifiedLayout Rename Grid) Window
-xwmGrid = smartBorders $ renamed [Replace "Grid"] Grid
 
 xwmTwoPane :: ModifiedLayout SmartBorder (ModifiedLayout Rename TwoPanePersistent) Window
 xwmTwoPane =
@@ -62,15 +72,6 @@ xwmFloat =
     noBorders
     . renamed [Replace "Float"]
     $ simplestFloat
-
-xwmOneBig :: ModifiedLayout SmartBorder (ModifiedLayout Rename OneBig) Window
-xwmOneBig =
-    smartBorders
-    . renamed [Replace "OneBig"]
-    $ OneBig width height
-  where
-    width   = 3 / 4
-    height   = 3 / 4
 
 applySpacing
     :: Integer
